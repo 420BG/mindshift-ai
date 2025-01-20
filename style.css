@@ -1,98 +1,54 @@
-/* Page load fade-in animation */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 20px;
-    background-image: url('https://source.unsplash.com/1600x900/?nature');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
+    margin: 50px;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.container {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 30px;
-    border-radius: 15px;
-    margin: 50px auto;
-    width: 80%;
-    max-width: 600px;
-}
-
-input, button {
-    padding: 15px;
-    margin: 15px 0;
-    font-size: 18px;
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #fff;
-    background-color: #222;
-    color: white;
-    transition: transform 0.2s, border-color 0.3s ease, box-shadow 0.3s ease;
+#game-container, #thoughts-container {
+    margin-bottom: 30px;
 }
 
 button {
+    padding: 12px 24px;
+    font-size: 18px;
     cursor: pointer;
+    margin: 10px;
     background-color: #4CAF50;
-    transition: background-color 0.3s;
+    border: none;
+    color: white;
+    border-radius: 5px;
 }
 
 button:hover {
     background-color: #45a049;
-    transform: scale(1.05);
 }
 
-input:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 80%;
+    margin-bottom: 20px;
 }
 
-#result {
-    margin-top: 20px;
+#score {
+    font-size: 20px;
     font-weight: bold;
+}
+
+#game-result, #result {
     font-size: 18px;
-    color: #ffeb3b;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideIn 0.6s forwards;
+    font-weight: bold;
+    color: #555;
 }
 
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+#thoughts-container {
+    margin-top: 40px;
 }
 
-@media (max-width: 600px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
-
-    input, button {
-        font-size: 16px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    #result {
-        font-size: 16px;
-    }
+.changed {
+    color: #009688;
+    font-weight: bold;
 }
