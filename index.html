@@ -4,25 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindShift AI</title>
-    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        #thought-input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div id="thoughts-container">
-        <h2>Transform Your Negative Thoughts</h2>
-        <textarea id="thought-input" placeholder="Enter your thoughts here..."></textarea>
-        <button id="submit-thought">Transform</button>
-        <p id="result"></p>
-    </div>
-
-    <div id="game-container">
-        <h2>Positive or Negative Word Game</h2>
-        <p id="word-display">Click "Start Game" to begin!</p>
-        <button id="positive-button">Positive</button>
-        <button id="negative-button">Negative</button>
-        <button id="start-game-button">Start Game</button>
-        <p id="score">Score: 0</p>
-    </div>
-
-    <script src="script.js"></script>
+    <h1>MindShift AI</h1>
+    <p>Transform negative thoughts into positive ones!</p>
+    <textarea id="thought-input" placeholder="Enter your negative thought here..."></textarea>
+    <br>
+    <button id="submit-thought">Transform Thought</button>
+    <p id="result"></p>
 </body>
 </html>
