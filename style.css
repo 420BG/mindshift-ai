@@ -1,169 +1,61 @@
-/* General Body Styles */
 body {
-    font-family: 'Roboto', sans-serif; /* Attractive font */
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
-    background-image: url('https://source.unsplash.com/1600x900/?nature,background'); /* Random background image */
+    background-image: url('https://source.unsplash.com/1600x900/?nature,calm');
     background-size: cover;
     background-position: center;
     color: #ffffff;
-    overflow: hidden;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: backgroundAnimation 20s ease infinite;
 }
 
-/* Animation for Smooth Background Transition */
-@keyframes backgroundAnimation {
-    0% {
-        background-image: url('https://source.unsplash.com/1600x900/?nature,landscape');
-    }
-    50% {
-        background-image: url('https://source.unsplash.com/1600x900/?nature,sea');
-    }
-    100% {
-        background-image: url('https://source.unsplash.com/1600x900/?nature,forest');
-    }
-}
-
-/* General Container Styles */
-#game-container, #thoughts-container {
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
-    padding: 30px;
+#thoughts-container, #game-container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
     border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     margin-bottom: 30px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 2s ease-out;
 }
 
-/* Fade In Animation for Containers */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Button Styles */
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    margin: 10px;
-    background-color: #4CAF50;
+textarea {
+    width: 90%;
+    max-width: 450px;
+    height: 80px;
+    padding: 10px;
     border: none;
-    color: white;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    animation: scaleIn 0.5s ease-out;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #45a049;
-    transform: scale(1.1); /* Slight scaling effect on hover */
 }
 
-/* Button Animation on Initial Load */
-@keyframes scaleIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Textarea Styles */
-textarea {
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 80%;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px solid #4CAF50;
-    color: #ffffff;
-    transition: border-color 0.3s ease;
-}
-
-textarea:focus {
-    border-color: #45a049;
-    outline: none;
-}
-
-/* Score and Result Text Styles */
-#score {
-    font-size: 22px;
+#result, #word-display, #score {
+    margin-top: 20px;
+    font-size: 18px;
     font-weight: bold;
-    color: #ffeb3b; /* Yellow for attention */
-    animation: scorePulse 1.5s ease-in-out infinite;
-}
-
-/* Pulse Animation for Score */
-@keyframes scorePulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Result Text Style */
-#game-result, #result {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffc107; /* Golden color for positive results */
-    animation: textGlow 1.5s ease-in-out infinite;
-}
-
-/* Text Glow Effect for Results */
-@keyframes textGlow {
-    0% {
-        text-shadow: 0 0 5px #fff, 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
-    }
-    50% {
-        text-shadow: 0 0 15px #ffeb3b, 0 0 30px #ffeb3b;
-    }
-    100% {
-        text-shadow: 0 0 5px #fff, 0 0 10px #ffeb3b;
-    }
-}
-
-/* Thoughts Section */
-#thoughts-container {
-    margin-top: 40px;
-    animation: fadeIn 3s ease-out;
-}
-
-.changed {
-    color: #00bcd4; /* Teal color for positive thoughts */
-    font-weight: bold;
-}
-
-/* Custom Scrollbar Style */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #333;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #4CAF50;
-    border-radius: 5px;
+    color: #ffd700;
 }
