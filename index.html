@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to MindShift AI</h1>
-        <p>Enter your negative thought and we'll help shift it to a positive one!</p>
-        <input type="text" id="thoughtInput" placeholder="Enter your negative thought">
+    <div id="game-container">
+        <h1>MindShift Positive vs. Negative Game</h1>
+        <p id="game-word"></p>
+        <button id="positive-btn">Positive</button>
+        <button id="negative-btn">Negative</button>
+        <p id="score">Score: 0</p>
+        <p id="game-result"></p>
+    </div>
+
+    <div id="thoughts-container">
+        <h1>Shift Your Thoughts</h1>
+        <textarea id="thoughtInput" rows="4" cols="50" placeholder="Enter your negative thought"></textarea><br>
         <button onclick="shiftThought()">Shift Thought</button>
         <button onclick="resetInput()">Reset</button>
-        <p id="result"></p>
+        <div id="result"></div>
     </div>
 
     <script src="script.js"></script>
