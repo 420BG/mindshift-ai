@@ -1,3 +1,4 @@
+/* Page load fade-in animation */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -6,6 +7,17 @@ body {
     background-size: cover;
     background-position: center;
     color: white;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .container {
@@ -26,6 +38,7 @@ input, button {
     border: 1px solid #fff;
     background-color: #222;
     color: white;
+    transition: transform 0.2s, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button {
@@ -36,6 +49,12 @@ button {
 
 button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
+}
+
+input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 #result {
@@ -43,6 +62,20 @@ button:hover {
     font-weight: bold;
     font-size: 18px;
     color: #ffeb3b;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideIn 0.6s forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 600px) {
