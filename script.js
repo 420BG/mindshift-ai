@@ -40,7 +40,16 @@ document.getElementById("submit-thought").addEventListener("click", async () => 
 const positiveWords = ["happy", "joyful", "strong", "beautiful", "hopeful"];
 const negativeWords = ["sad", "weak", "ugly", "hopeless", "unhappy"];
 let score = 0;
+let highScore = 0;
 let currentWord = "";
+let gameStarted = false;
+let timer;
+let timeRemaining = 30;
+
+function updateScore() {
+    document.getElementById("score").innerText = `Score: ${score}`;
+    document.getElementById("high-score").innerText = `High Score: ${highScore}`;
+}
 
 function generateRandomWord() {
     const allWords = [...positiveWords, ...negativeWords];
@@ -48,36 +57,65 @@ function generateRandomWord() {
     return allWords[randomIndex];
 }
 
+function startTimer() {
+    timer = setInterval(() => {
+        timeRemaining--;
+        document.getElementById("timer-bar").style.width = `${(timeRemaining / 30) * 100}%`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timer);
+            endGame();
+        }
+    }, 1000);
+}
+
 function startGame() {
+    score = 0;
+    timeRemaining = 30;
+    gameStarted = true;
+    updateScore();
+    generateNewWord();
+    document.getElementById("game-word").classList.remove("game-end");
+    startTimer();
+}
+
+function generateNewWord() {
     currentWord = generateRandomWord();
     document.getElementById("game-word").innerText = `Word: ${currentWord}`;
 }
 
-document.getElementById("positive-btn").addEventListener("click", () => {
-    if (positiveWords.includes(currentWord)) {
-        score++;
-        alert("Correct! It is positive!");
-    } else {
-        alert("Incorrect. It is negative.");
+function handleUserChoice(isPositive) {
+    if (!gameStarted) {
+        alert("Please start the game first!");
+        return;
     }
-    updateScore();
-    startGame();
-});
 
-document.getElementById("negative-btn").addEventListener("click", () => {
-    if (negativeWords.includes(currentWord)) {
+    const correct =
+        (isPositive && positiveWords.includes(currentWord)) ||
+        (!isPositive && negativeWords.includes(currentWord));
+
+    if (correct) {
         score++;
-        alert("Correct! It is negative!");
+        document.getElementById("game-word").classList.add("correct");
+        setTimeout(() => document.getElementById("game-word").classList.remove("correct"), 300);
     } else {
-        alert("Incorrect. It is positive.");
+        document.getElementById("game-word").classList.add("wrong");
+        setTimeout(() => document.getElementById("game-word").classList.remove("wrong"), 300);
     }
-    updateScore();
-    startGame();
-});
 
-function updateScore() {
-    document.getElementById("score").innerText = `Score: ${score}`;
+    updateScore();
+    generateNewWord();
 }
 
-// Initialize game on page load
-startGame();
+function endGame() {
+    gameStarted = false;
+    highScore = Math.max(highScore, score);
+    updateScore();
+    document.getElementById("game-word").innerText = "Game Over! Press Start to play again.";
+    document.getElementById("game-word").classList.add("game-end");
+}
+
+// Event Listeners
+document.getElementById("start-game").addEventListener("click", startGame);
+document.getElementById("positive-btn").addEventListener("click", () => handleUserChoice(true));
+document.getElementById("negative-btn").addEventListener("click", () => handleUserChoice(false));
