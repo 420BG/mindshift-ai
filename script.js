@@ -1,5 +1,18 @@
-// ------------------------ Negative to Positive Converter ------------------------
+// ------------------------ Daily Affirmation ------------------------
+const affirmations = [
+    "You are capable of achieving great things today!",
+    "Believe in yourself and all that you are.",
+    "Your potential is limitless!",
+    "You are stronger than you think!",
+    "You are worthy of success and happiness!"
+];
 
+document.getElementById("refresh-affirmation").addEventListener("click", () => {
+    const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+    document.getElementById("daily-affirmation").innerText = randomAffirmation;
+});
+
+// ------------------------ Negative to Positive Converter ------------------------
 async function fetchAntonym(word) {
     try {
         const response = await fetch(`https://api.datamuse.com/words?rel_ant=${word}`);
@@ -48,6 +61,7 @@ let timeRemaining = 30;
 
 function updateScore() {
     document.getElementById("score").innerText = `Score: ${score}`;
+    document.getElementById("high-score").innerText = `High Score: ${highScore}`;
 }
 
 function generateRandomWord() {
@@ -117,9 +131,3 @@ function endGame() {
 document.getElementById("start-game").addEventListener("click", startGame);
 document.getElementById("positive-btn").addEventListener("click", () => handleUserChoice(true));
 document.getElementById("negative-btn").addEventListener("click", () => handleUserChoice(false));
-
-// Toggle Thoughts Section
-document.getElementById("toggle-thoughts").addEventListener("click", () => {
-    const thoughtsContainer = document.getElementById("thoughts-container");
-    thoughtsContainer.classList.toggle("active");
-});
