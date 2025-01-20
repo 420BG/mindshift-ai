@@ -1,54 +1,26 @@
-// ------------------------ Negative to Positive Converter ------------------------
+// ------------------------ Daily Affirmation ------------------------
 
-async function fetchAntonym(word) {
+async function fetchDailyAffirmation() {
     try {
-        const response = await fetch(`https://api.datamuse.com/words?rel_ant=${word}`);
+        const response = await fetch('https://www.affirmations.dev/');
         const data = await response.json();
-        return data.length > 0 ? data[0].word : null;
+        document.getElementById("affirmation-text").innerText = data.affirmation;
     } catch (error) {
-        console.error("Error fetching antonym:", error);
-        return null;
+        console.error("Error fetching affirmation:", error);
+        document.getElementById("affirmation-text").innerText = "Sorry, something went wrong!";
     }
 }
-
-async function transformNegativeToPositive(inputText) {
-    const words = inputText.toLowerCase().split(" ");
-    const transformedWords = await Promise.all(
-        words.map(async (word) => {
-            const antonym = await fetchAntonym(word);
-            return antonym || word;
-        })
-    );
-    return transformedWords.join(" ");
-}
-
-document.getElementById("submit-thought").addEventListener("click", async () => {
-    const userInput = document.getElementById("thought-input").value.trim();
-
-    if (!userInput) {
-        document.getElementById("result").innerText = "Please enter a thought!";
-        return;
-    }
-
-    document.getElementById("result").innerText = "Transforming your thoughts...";
-    const positiveThought = await transformNegativeToPositive(userInput);
-    document.getElementById("result").innerText = `Your positive thought: "${positiveThought}"`;
-});
 
 // ------------------------ Positive-Negative Game ------------------------
 
 const positiveWords = ["happy", "joyful", "strong", "beautiful", "hopeful"];
 const negativeWords = ["sad", "weak", "ugly", "hopeless", "unhappy"];
 let score = 0;
-let highScore = 0;
 let currentWord = "";
 let gameStarted = false;
-let timer;
-let timeRemaining = 30;
 
 function updateScore() {
     document.getElementById("score").innerText = `Score: ${score}`;
-    document.getElementById("high-score").innerText = `High Score: ${highScore}`;
 }
 
 function generateRandomWord() {
@@ -57,26 +29,11 @@ function generateRandomWord() {
     return allWords[randomIndex];
 }
 
-function startTimer() {
-    timer = setInterval(() => {
-        timeRemaining--;
-        document.getElementById("timer-bar").style.width = `${(timeRemaining / 30) * 100}%`;
-
-        if (timeRemaining <= 0) {
-            clearInterval(timer);
-            endGame();
-        }
-    }, 1000);
-}
-
 function startGame() {
     score = 0;
-    timeRemaining = 30;
     gameStarted = true;
     updateScore();
     generateNewWord();
-    document.getElementById("game-word").classList.remove("game-end");
-    startTimer();
 }
 
 function generateNewWord() {
@@ -107,15 +64,19 @@ function handleUserChoice(isPositive) {
     generateNewWord();
 }
 
-function endGame() {
-    gameStarted = false;
-    highScore = Math.max(highScore, score);
-    updateScore();
-    document.getElementById("game-word").innerText = "Game Over! Press Start to play again.";
-    document.getElementById("game-word").classList.add("game-end");
-}
+// ------------------------ Switching Sections ------------------------
 
-// Event Listeners
+document.getElementById("daily-affirmation-btn").addEventListener("click", () => {
+    document.getElementById("affirmation-section").classList.add("active");
+    document.getElementById("game-section").classList.remove("active");
+    fetchDailyAffirmation();
+});
+
+document.getElementById("positive-negative-game-btn").addEventListener("click", () => {
+    document.getElementById("game-section").classList.add("active");
+    document.getElementById("affirmation-section").classList.remove("active");
+});
+
 document.getElementById("start-game").addEventListener("click", startGame);
 document.getElementById("positive-btn").addEventListener("click", () => handleUserChoice(true));
 document.getElementById("negative-btn").addEventListener("click", () => handleUserChoice(false));
