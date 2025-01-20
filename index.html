@@ -18,14 +18,12 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        textarea, button {
+        button {
             margin: 10px;
-            padding: 10px;
-            font-size: 16px;
+            padding: 15px 30px;
+            font-size: 18px;
             border-radius: 5px;
             border: none;
-        }
-        button {
             cursor: pointer;
             background: #4CAF50;
             color: white;
@@ -34,43 +32,22 @@
         button:hover {
             background: #45a049;
         }
-        #score, #high-score {
+        .hidden {
+            display: none;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .content-section {
+            display: none;
+            padding: 20px;
+            background: #3a4a6b;
+            border-radius: 10px;
             margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
         }
-        #timer-bar {
-            width: 100%;
-            height: 10px;
-            background: #4CAF50;
-            transition: width 0.5s;
-        }
-        .correct {
-            animation: glow 0.3s ease-in-out;
-            color: #4CAF50;
-        }
-        .wrong {
-            animation: glow-red 0.3s ease-in-out;
-            color: #ff3e3e;
-        }
-        .game-end {
-            color: #ffcc00;
-        }
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
-            }
-            100% {
-                text-shadow: none;
-            }
-        }
-        @keyframes glow-red {
-            0% {
-                text-shadow: 0 0 5px #ff3e3e, 0 0 10px #ff3e3e;
-            }
-            100% {
-                text-shadow: none;
-            }
+        .content-section.active {
+            display: block;
         }
         footer {
             margin-top: 20px;
@@ -80,36 +57,28 @@
     </style>
 </head>
 <body>
-    <h1>MindShift AI</h1>
+    <div class="container">
+        <h1>MindShift AI</h1>
+        <p>Select a feature:</p>
+        <button id="daily-affirmation-btn">Daily Affirmation</button>
+        <button id="positive-negative-game-btn">Positive-Negative Game</button>
 
-    <!-- Negative to Positive Converter -->
-    <section>
-        <h2>Transform Negative Thoughts</h2>
-        <textarea id="thought-input" placeholder="Enter your negative thought here..." rows="3"></textarea>
-        <br>
-        <button id="submit-thought">Transform Thought</button>
-        <p id="result"></p>
-    </section>
+        <!-- Affirmation Section -->
+        <div id="affirmation-section" class="content-section">
+            <h2>Daily Affirmation</h2>
+            <p id="affirmation-text">Loading your daily affirmation...</p>
+        </div>
 
-    <!-- Game Section -->
-    <section>
-        <h2>Positive-Negative Game</h2>
-        <p id="game-word"></p>
-        <div id="timer-bar"></div>
-        <button id="start-game">Start Game</button>
-        <br>
-        <button id="positive-btn">Positive</button>
-        <button id="negative-btn">Negative</button>
-        <p id="score">Score: 0</p>
-        <p id="high-score">High Score: 0</p>
-    </section>
-
-    <!-- Daily Affirmations Section -->
-    <section>
-        <h2>Daily Affirmation</h2>
-        <p id="affirmation">Click the button to get a positive affirmation!</p>
-        <button onclick="fetchAffirmation()">Get Affirmation</button>
-    </section>
+        <!-- Game Section -->
+        <div id="game-section" class="content-section">
+            <h2>Positive-Negative Game</h2>
+            <p id="game-word">Click "Start Game" to begin</p>
+            <button id="start-game">Start Game</button>
+            <button id="positive-btn">Positive</button>
+            <button id="negative-btn">Negative</button>
+            <p id="score">Score: 0</p>
+        </div>
+    </div>
 
     <footer>
         <p>Created by BG-bot</p>
