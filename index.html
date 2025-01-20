@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: linear-gradient(to right, #1e3c72, #2a5298);
             color: white;
         }
         textarea, button {
@@ -28,10 +28,43 @@
         button:hover {
             background: #45a049;
         }
-        #score {
+        #score, #high-score {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
+        }
+        #timer-bar {
+            width: 100%;
+            height: 10px;
+            background: #4CAF50;
+            transition: width 0.5s;
+        }
+        .correct {
+            animation: glow 0.3s ease-in-out;
+            color: #4CAF50;
+        }
+        .wrong {
+            animation: glow-red 0.3s ease-in-out;
+            color: #ff3e3e;
+        }
+        .game-end {
+            color: #ffcc00;
+        }
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
+            }
+            100% {
+                text-shadow: none;
+            }
+        }
+        @keyframes glow-red {
+            0% {
+                text-shadow: 0 0 5px #ff3e3e, 0 0 10px #ff3e3e;
+            }
+            100% {
+                text-shadow: none;
+            }
         }
     </style>
 </head>
@@ -51,9 +84,13 @@
     <section>
         <h2>Positive-Negative Game</h2>
         <p id="game-word"></p>
+        <div id="timer-bar"></div>
+        <button id="start-game">Start Game</button>
+        <br>
         <button id="positive-btn">Positive</button>
         <button id="negative-btn">Negative</button>
         <p id="score">Score: 0</p>
+        <p id="high-score">High Score: 0</p>
     </section>
 </body>
 </html>
