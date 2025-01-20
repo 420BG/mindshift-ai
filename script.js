@@ -1,9 +1,9 @@
-// Function to fetch antonyms for a word using the Datamuse API
+// ------------------------ Negative to Positive Converter ------------------------
+
 async function fetchAntonym(word) {
     try {
         const response = await fetch(`https://api.datamuse.com/words?rel_ant=${word}`);
         const data = await response.json();
-        // Return the first antonym if available, otherwise null
         return data.length > 0 ? data[0].word : null;
     } catch (error) {
         console.error("Error fetching antonym:", error);
@@ -11,19 +11,17 @@ async function fetchAntonym(word) {
     }
 }
 
-// Transform negative thoughts to positive thoughts dynamically
 async function transformNegativeToPositive(inputText) {
-    const words = inputText.toLowerCase().split(" "); // Split input into words
+    const words = inputText.toLowerCase().split(" ");
     const transformedWords = await Promise.all(
         words.map(async (word) => {
             const antonym = await fetchAntonym(word);
-            return antonym || word; // Replace with antonym if available, otherwise keep original word
+            return antonym || word;
         })
     );
-    return transformedWords.join(" "); // Join transformed words into a sentence
+    return transformedWords.join(" ");
 }
 
-// Event listener for the "Submit" button
 document.getElementById("submit-thought").addEventListener("click", async () => {
     const userInput = document.getElementById("thought-input").value.trim();
 
@@ -32,13 +30,54 @@ document.getElementById("submit-thought").addEventListener("click", async () => 
         return;
     }
 
-    // Display a loading message while processing
     document.getElementById("result").innerText = "Transforming your thoughts...";
-
-    // Transform the input text
     const positiveThought = await transformNegativeToPositive(userInput);
-
-    // Display the result
-    document.getElementById("result").innerText = 
-        `Your positive thought: "${positiveThought}"`;
+    document.getElementById("result").innerText = `Your positive thought: "${positiveThought}"`;
 });
+
+// ------------------------ Positive-Negative Game ------------------------
+
+const positiveWords = ["happy", "joyful", "strong", "beautiful", "hopeful"];
+const negativeWords = ["sad", "weak", "ugly", "hopeless", "unhappy"];
+let score = 0;
+let currentWord = "";
+
+function generateRandomWord() {
+    const allWords = [...positiveWords, ...negativeWords];
+    const randomIndex = Math.floor(Math.random() * allWords.length);
+    return allWords[randomIndex];
+}
+
+function startGame() {
+    currentWord = generateRandomWord();
+    document.getElementById("game-word").innerText = `Word: ${currentWord}`;
+}
+
+document.getElementById("positive-btn").addEventListener("click", () => {
+    if (positiveWords.includes(currentWord)) {
+        score++;
+        alert("Correct! It is positive!");
+    } else {
+        alert("Incorrect. It is negative.");
+    }
+    updateScore();
+    startGame();
+});
+
+document.getElementById("negative-btn").addEventListener("click", () => {
+    if (negativeWords.includes(currentWord)) {
+        score++;
+        alert("Correct! It is negative!");
+    } else {
+        alert("Incorrect. It is positive.");
+    }
+    updateScore();
+    startGame();
+});
+
+function updateScore() {
+    document.getElementById("score").innerText = `Score: ${score}`;
+}
+
+// Initialize game on page load
+startGame();
