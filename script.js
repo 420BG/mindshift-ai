@@ -1,7 +1,7 @@
 // Function to fetch synonyms for a word using the Datamuse API
 async function fetchSynonyms(word) {
     try {
-        const response = await fetch(`https://api.datamuse.com/words?rel_syn=${word}`);
+        const response = await fetch(`https://api.datamuse.com/words?rel_ant=<word>`);
         const data = await response.json();
         // Return the first synonym, or null if no synonyms are found
         return data.length > 0 ? data[0].word : null;
