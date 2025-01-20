@@ -13,26 +13,22 @@
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
         }
-        #thought-input {
-            width: 80%;
+        textarea, button {
+            margin: 10px;
             padding: 10px;
-            margin-bottom: 20px;
+            font-size: 16px;
             border-radius: 5px;
             border: none;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            cursor: pointer;
             background: #4CAF50;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
         button:hover {
             background: #45a049;
         }
-        #result {
+        #score {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
@@ -41,10 +37,23 @@
 </head>
 <body>
     <h1>MindShift AI</h1>
-    <p>Transform negative thoughts into positive ones!</p>
-    <textarea id="thought-input" placeholder="Enter your negative thought here..."></textarea>
-    <br>
-    <button id="submit-thought">Transform Thought</button>
-    <p id="result"></p>
+
+    <!-- Negative to Positive Converter -->
+    <section>
+        <h2>Transform Negative Thoughts</h2>
+        <textarea id="thought-input" placeholder="Enter your negative thought here..." rows="3"></textarea>
+        <br>
+        <button id="submit-thought">Transform Thought</button>
+        <p id="result"></p>
+    </section>
+
+    <!-- Positive-Negative Game -->
+    <section>
+        <h2>Positive-Negative Game</h2>
+        <p id="game-word"></p>
+        <button id="positive-btn">Positive</button>
+        <button id="negative-btn">Negative</button>
+        <p id="score">Score: 0</p>
+    </section>
 </body>
 </html>
