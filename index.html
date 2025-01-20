@@ -7,21 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
-        <h1>MindShift Positive vs. Negative Game</h1>
-        <p id="game-word"></p>
-        <button id="positive-btn">Positive</button>
-        <button id="negative-btn">Negative</button>
-        <p id="score">Score: 0</p>
-        <p id="game-result"></p>
+    <div id="thoughts-container">
+        <h2>Transform Your Negative Thoughts</h2>
+        <textarea id="thought-input" placeholder="Enter your thoughts here..."></textarea>
+        <button id="submit-thought">Transform</button>
+        <p id="result"></p>
     </div>
 
-    <div id="thoughts-container">
-        <h1>Shift Your Thoughts</h1>
-        <textarea id="thoughtInput" rows="4" cols="50" placeholder="Enter your negative thought"></textarea><br>
-        <button onclick="shiftThought()">Shift Thought</button>
-        <button onclick="resetInput()">Reset</button>
-        <div id="result"></div>
+    <div id="game-container">
+        <h2>Positive or Negative Word Game</h2>
+        <p id="word-display">Click "Start Game" to begin!</p>
+        <button id="positive-button">Positive</button>
+        <button id="negative-button">Negative</button>
+        <button id="start-game-button">Start Game</button>
+        <p id="score">Score: 0</p>
     </div>
 
     <script src="script.js"></script>
